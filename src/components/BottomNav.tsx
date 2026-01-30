@@ -9,26 +9,25 @@ export default function BottomNav() {
     const pathname = usePathname();
     const [cartCount, setCartCount] = useState(0);
 
-    // Bonus: Fetch actual cart count for the badge
     useEffect(() => {
-        // Simple polling or fetch on mount to get badge count. 
-        // In a real app, this would use a Context or React Query.
+        // Poll cart count
         const fetchCart = async () => {
             try {
                 const res = await fetch('/api/cart');
                 if (res.ok) {
                     const data = await res.json();
-                    // Assuming count is total items, or just number of unique items
                     const count = data.reduce((acc: number, item: any) => acc + item.quantity, 0);
                     setCartCount(count);
                 }
             } catch (e) {
-                console.error('Failed to fetch cart count', e);
+                console.error(e);
             }
         };
-
         fetchCart();
-    }, [pathname]); // Refresh on route change
+        // Simple interval to keep it updated nicely in this demo without websockets/context
+        const interval = setInterval(fetchCart, 2000);
+        return () => clearInterval(interval);
+    }, [pathname]);
 
     const navItems = [
         { name: 'Home', href: '/', icon: House },
@@ -37,34 +36,66 @@ export default function BottomNav() {
         { name: 'Settings', href: '/settings', icon: Settings },
     ];
 
-    // Optional: Hide nav on product details if strictly following "fullscreen" feel,
-    // but requirements were to "ensure... padding... so nav bar doesn't cover", implying it's always there.
-
     return (
-        <nav className="fixed bottom-0 inset-x-0 mx-auto w-full max-w-md bg-white border-t border-gray-100 px-6 py-3 flex justify-between items-center z-50 shadow-[0_-5px_20px_rgba(0,0,0,0.03)]">
+        <nav className="fixed bottom-0 inset-x-0 mx-auto w-full max-w-md bg-white px-8 py-5 flex justify-between items-center z-50">
+            {/* 
+         Removed border-t and shadow based on the "floating" clean look in reference, 
+         or kept basic white bg. The reference shows a very clean bar.
+      */}
             {navItems.map((item) => {
                 const isActive = pathname === item.href;
                 const Icon = item.icon;
+                const isCart = item.name === 'Cart';
+
+                // Style Logic:
+                // Active Home: Solid Orange Icon (filled)
+                // Inactive: Thin Black/Grey Line Icon
+
+                // Note: Lucide icons fill with 'fill-current'.
+                // For Home active: set color to orange, fill to orange.
+                // For others inactive: set color to dark grey/black.
 
                 return (
                     <Link
                         key={item.name}
                         href={item.href}
-                        className={`flex flex-col items-center gap-1 transition-colors relative
-              ${isActive ? 'text-[#F37A20]' : 'text-gray-400 hover:text-gray-600'}`}
+                        className="flex flex-col items-center justify-center relative group"
                     >
-                        <div className="relative">
-                            <Icon className={`w-6 h-6 ${isActive ? 'fill-current' : ''}`} />
+                        <div className="relative p-1">
+                            <Icon
+                                className={`w-6 h-6 transition-colors duration-200
+                  ${isActive
+                                        ? 'text-[#F37A20] fill-[#F37A20]' // Active: Orange & Filled
+                                        : 'text-gray-500 stroke-[2px]'    // Inactive: Grey Line
+                                    }
+                `}
+                            />
 
-                            {/* Cart Badge */}
-                            {item.name === 'Cart' && cartCount > 0 && (
-                                <span className="absolute -top-1.5 -right-1.5 bg-red-500 text-white text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full border-2 border-white">
-                                    {cartCount > 9 ? '9+' : cartCount}
-                                </span>
+                            {/* Cart Badge - Red Dot */}
+                            {isCart && cartCount > 0 && (
+                                <span className="absolute top-0 right-0 bg-red-500 w-2.5 h-2.5 rounded-full border-2 border-white translate-x-1 -translate-y-1"></span>
                             )}
                         </div>
-                        {/* Optional Label (can hide for minimal look, but keeps accessibility) */}
-                        <span className="text-[10px] font-medium">{item.name}</span>
+                        {/* Label - showing label based on active state or always? 
+                Reference often adds a small label for active, but request says "Icons...". 
+                I will show small labels as per previous design but focus on icon style.
+                Actually, reference screenshot "Home" has "Home" text colored orange below it!
+                Wait, looking at the provided reference image "Home" bottom bar:
+                - Home icon is Orange Filled + Text "Home" Orange.
+                - Search is Icon Only (Grey).
+                - Cart is Icon Only (Grey) + Red Dot.
+                - Settings is Icon Only (Grey).
+            */}
+                        {isActive && (
+                            <span className="text-[10px] font-bold mt-1 text-[#F37A20]">
+                                {item.name}
+                            </span>
+                        )}
+                        {!isActive && (
+                            <span className="text-[10px] font-medium mt-1 text-gray-400 group-hover:text-gray-600">
+                                {item.name}
+                            </span>
+                        )}
                     </Link>
                 );
             })}

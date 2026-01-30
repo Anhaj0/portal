@@ -9,21 +9,29 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
     return (
-        <Link href={`/product/${product.id}`} className="group block">
-            <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-gray-100">
+        <Link href={`/product/${product.id}`} className="block">
+            {/* 
+        Changes:
+        - Removed bg-gray-100 from container
+        - Image provides the background (assumed to be part of the image or white)
+        - Bag icon: Solid black circle, white icon, overlapping image bottom-right
+      */}
+            <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl mb-2">
                 <Image
                     src={product.images[0]}
                     alt={product.name}
                     fill
-                    className="object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                    className="object-cover object-top"
                 />
-                <div className="absolute bottom-3 right-3 bg-white p-2 rounded-full shadow-md z-10">
-                    <ShoppingBag className="w-4 h-4 text-black" />
+                <div className="absolute bottom-2 right-2 flex items-center justify-center w-8 h-8 bg-black rounded-full shadow-md z-10 p-2">
+                    <ShoppingBag className="w-full h-full text-white" strokeWidth={2.5} />
                 </div>
             </div>
-            <div className="mt-3 space-y-1">
-                <h3 className="text-sm font-medium text-black">${product.price.toFixed(2)}</h3>
-                <p className="text-xs text-gray-500 truncate">{product.name}</p>
+
+            {/* Tightened vertical spacing */}
+            <div className="px-1">
+                <h3 className="text-base font-bold text-black leading-tight">${product.price.toFixed(2)}</h3>
+                <p className="text-xs text-gray-500 truncate mt-0.5">{product.name}</p>
             </div>
         </Link>
     );
