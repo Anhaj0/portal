@@ -1,0 +1,12 @@
+<svg width="600" height="800" viewBox="0 0 600 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="paint5" x1="0" y1="0" x2="600" y2="800" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EFE4DA"/>
+      <stop offset="1" stop-color="#C9A58E"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="800" rx="80" fill="url(#paint5)"/>
+  <circle cx="300" cy="230" r="115" fill="#EBC2A8"/>
+  <rect x="165" y="350" width="270" height="360" rx="125" fill="#B6805E"/>
+  <text x="300" y="740" text-anchor="middle" font-family="DM Sans, Arial" font-size="28" fill="#7D523F">Leather Coat</text>
+</svg>

@@ -4,44 +4,44 @@
     "name": "Premium Tagerine Shirt",
     "price": 257.85,
     "description": "A premium shirt with floral patterns, perfect for summer.",
-    "images": ["https://placehold.co/400x600"],
+    "images": ["/images/product-1.svg"],
     "sizes": ["S", "M", "L", "XL", "XXL"],
-    "colors": ["#F37A20", "#1A2B3C", "#AABBCC"]
+    "colors": ["#F37A20", "#1A2B3C", "#A7B4C3"]
   },
   {
     "id": "2",
     "name": "Leather Coat",
     "price": 325.36,
     "description": "Stylish leather coat for formal occasions.",
-    "images": ["https://placehold.co/400x600"],
+    "images": ["/images/product-2.svg"],
     "sizes": ["S", "M", "L"],
-    "colors": ["#8B4513"]
+    "colors": ["#C8896A", "#8B5E3C", "#2E2E2E"]
   },
   {
     "id": "3",
     "name": "Tagerine Shirt",
     "price": 240.32,
     "description": "Casual tangerine shirt.",
-    "images": ["https://placehold.co/400x600"],
+    "images": ["/images/product-3.svg"],
     "sizes": ["S", "M", "L"],
-    "colors": ["#F37A20"]
+    "colors": ["#F37A20", "#E3B08C", "#2F2F2F"]
   },
   {
     "id": "4",
     "name": "Tagerine Shirt",
     "price": 126.47,
     "description": "Lightweight tangerine shirt.",
-    "images": ["https://placehold.co/400x600"],
+    "images": ["/images/product-4.svg"],
     "sizes": ["S", "M", "L"],
-    "colors": ["#F37A20"]
+    "colors": ["#F37A20", "#D7A383", "#1F1F1F"]
   },
   {
     "id": "5",
     "name": "Leather Coat",
     "price": 257.85,
     "description": "Another leather coat variant.",
-    "images": ["https://placehold.co/400x600"],
+    "images": ["/images/product-5.svg"],
     "sizes": ["S", "M", "L"],
-    "colors": ["#8B4513"]
+    "colors": ["#C08C6B", "#916144", "#2B2B2B"]
   }
 ]

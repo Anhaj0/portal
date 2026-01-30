@@ -1,0 +1,12 @@
+<svg width="600" height="800" viewBox="0 0 600 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="paint1" x1="0" y1="0" x2="600" y2="800" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F2E2D3"/>
+      <stop offset="1" stop-color="#E1C3A4"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="800" rx="80" fill="url(#paint1)"/>
+  <circle cx="300" cy="250" r="120" fill="#F7D7C2"/>
+  <rect x="170" y="360" width="260" height="320" rx="120" fill="#D28D6F"/>
+  <text x="300" y="740" text-anchor="middle" font-family="DM Sans, Arial" font-size="28" fill="#9B5C45">Premium Shirt</text>
+</svg>

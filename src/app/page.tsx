@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { LayoutGrid, User } from 'lucide-react';
 import ProductCard from '@/components/ProductCard';
 import productsData from '@/data/products.json';
@@ -10,7 +11,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-white pb-24">
       {/* Header */}
-      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm px-4 py-4 flex justify-between items-center">
+      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm px-5 py-4 flex justify-between items-center">
         <button className="p-2 -ml-2 hover:bg-gray-100 rounded-full">
           <LayoutGrid className="w-6 h-6 text-black" />
         </button>
@@ -20,8 +21,7 @@ export default function Home() {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 px-4">
-
+      <main className="flex-1 px-5">
         {/* Title Section */}
         <div className="mb-6">
           <h1 className="text-3xl font-bold text-black tracking-tight">Explore</h1>
@@ -33,7 +33,7 @@ export default function Home() {
           {categories.map((cat, index) => (
             <button
               key={cat}
-              className={`px-5 py-2.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap
+              className={`px-4 py-2 rounded-full text-xs font-semibold transition-colors whitespace-nowrap
                 ${index === 0
                   ? 'bg-[#F37A20] text-white shadow-lg shadow-orange-200'
                   : 'text-gray-500 hover:text-black'
@@ -44,11 +44,25 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Product Grid 
-            Changes:
-            - Increased vertical gap (gap-y-8)
-            - Decreased horizontal gap (gap-x-4)
-        */}
+        {/* Promo Card */}
+        <div className="bg-[#F7F7F7] rounded-3xl px-5 py-4 flex items-center gap-3 mb-6">
+          <div className="flex-1">
+            <p className="text-sm text-gray-500">New Collection</p>
+            <p className="text-base font-bold text-black mt-1">Discount 50% for the
+              <br />
+              first transaction</p>
+          </div>
+          <div className="relative w-16 h-16">
+            <Image
+              src="/images/onboarding.svg"
+              alt="New collection"
+              fill
+              className="object-cover rounded-full"
+            />
+          </div>
+        </div>
+
+        {/* Product Grid */}
         <div className="grid grid-cols-2 gap-x-4 gap-y-8">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
