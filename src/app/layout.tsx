@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import MobileLayout from "@/components/MobileLayout";
+import BottomNav from "@/components/BottomNav";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body className={`${dmSans.variable} antialiased`}>
         <MobileLayout>
           {children}
+          <BottomNav />
         </MobileLayout>
       </body>
     </html>
