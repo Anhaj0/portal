@@ -38,8 +38,8 @@ export default function CartPage() {
       const data = await res.json();
 
       if (data.success) {
-        alert(`Order Placed: ${data.orderId}`);
-        router.push('/');
+        // In a real app we might pass the orderId or clear cart here
+        router.push('/checkout');
       } else {
         alert('Checkout failed');
       }
@@ -72,7 +72,7 @@ export default function CartPage() {
         <span className="text-sm font-medium text-gray-500 mx-auto pr-8">Cart</span>
       </header>
 
-      <main className="flex-1 px-6">
+      <main className="flex-1 px-6 overflow-hidden">
         <h1 className="text-2xl font-bold text-black mt-2">My Orders</h1>
 
         {cartItems.length === 0 ? (
@@ -83,34 +83,44 @@ export default function CartPage() {
         ) : (
           <div className="mt-6 space-y-5">
             {cartItems.map((item, idx) => (
-              <div key={`${item.id}-${idx}`} className="flex items-center gap-4">
-                <div className="relative w-20 h-24 rounded-2xl overflow-hidden bg-[#F3E6D8] shrink-0">
-                  <Image
-                    src={item.images[0]}
-                    alt={item.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-sm font-bold text-black">{item.name}</h3>
-                  <p className="text-xs text-gray-400 mt-1">
-                    {item.selectedColor ? 'Yellow' : 'Yellow'}
-                  </p>
-                  <p className="text-xs text-gray-400">Size {item.selectedSize}</p>
-                  <div className="flex items-center justify-between mt-2">
-                    <span className="font-bold text-black text-sm">${item.price.toFixed(2)}</span>
-                    <span className="text-sm text-black">{item.quantity}x</span>
+              // Swipe container
+              <div key={`${item.id}-${idx}`} className="group relative w-full overflow-hidden">
+                <div className="flex w-full overflow-x-auto no-scrollbar snap-x snap-mandatory">
+                  {/* Main Content - Snap Area */}
+                  <div className="min-w-full flex items-center gap-4 snap-center bg-white pr-4">
+                    <div className="relative w-20 h-24 rounded-2xl overflow-hidden bg-[#F3E6D8] shrink-0">
+                      <Image
+                        src={item.images[0]}
+                        alt={item.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-sm font-bold text-black">{item.name}</h3>
+                      <p className="text-xs text-gray-400 mt-1">
+                        {item.selectedColor ? 'Yellow' : 'Yellow'}
+                      </p>
+                      <p className="text-xs text-gray-400">Size {item.selectedSize}</p>
+                      <div className="flex items-center justify-between mt-2">
+                        <span className="font-bold text-black text-sm">${item.price.toFixed(2)}</span>
+                        <span className="text-sm text-black">{item.quantity}x</span>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className="relative h-12 w-16">
-                  <div className="absolute inset-y-0 right-0 flex">
-                    <button className="w-14 h-12 bg-[#F37A20] rounded-r-full flex items-center justify-center text-white">
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                    <button className="-ml-6 w-12 h-12 bg-[#F37A20] rounded-full flex items-center justify-center text-white border-4 border-white">
-                      <Heart className="w-4 h-4" />
-                    </button>
+
+                  {/* Actions Drawer - Snap Area */}
+                  <div className="flex items-center snap-center pl-4">
+                    <div className="flex items-center h-12 bg-[#F37A20] rounded-l-[2rem] px-2">
+                      <button className="w-10 h-10 flex items-center justify-center text-white">
+                        <Heart className="w-5 h-5" />
+                      </button>
+                      <div className="w-[1px] h-6 bg-white/20 mx-1"></div>
+                      <button className="w-10 h-10 flex items-center justify-center text-white">
+                        <Trash2 className="w-5 h-5" />
+                      </button>
+                      <div className="w-2"></div>
+                    </div>
                   </div>
                 </div>
               </div>

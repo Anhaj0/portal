@@ -45,14 +45,14 @@ export default function BottomNav() {
           <Link
             key={item.name}
             href={item.href}
-            className="flex flex-col items-center justify-center relative group"
+            className="flex flex-col items-center justify-center relative group gap-1"
           >
             <div className="relative p-1">
               <Icon
                 className={`w-6 h-6 transition-colors duration-200
                   ${isActive
-                    ? 'text-[#F37A20] fill-[#F37A20]'
-                    : 'text-gray-500 stroke-[2px]'
+                    ? 'text-[#F37A20] fill-[#F37A20]' // Active: Orange & Filled
+                    : 'text-black stroke-[1.5px]'     // Inactive: Black Line
                   }
                 `}
               />
@@ -61,11 +61,10 @@ export default function BottomNav() {
                 <span className="absolute top-0 right-0 bg-red-500 w-2.5 h-2.5 rounded-full border-2 border-white translate-x-1 -translate-y-1"></span>
               )}
             </div>
-            {isActive ? (
-              <span className="text-[10px] font-bold mt-1 text-[#F37A20]">{item.name}</span>
-            ) : (
-              <span className="text-[10px] font-medium mt-1 text-gray-400 group-hover:text-gray-600">{item.name}</span>
-            )}
+
+            <span className={`text-[10px] font-medium ${isActive ? 'text-[#F37A20]' : 'text-black'}`}>
+              {item.name}
+            </span>
           </Link>
         );
       })}

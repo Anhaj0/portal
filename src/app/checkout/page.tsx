@@ -41,17 +41,27 @@ export default function CheckoutPage() {
           </div>
 
           <div>
-            <p className="text-xs text-gray-400">Payment Method</p>
-            <div className="mt-4 flex items-center gap-4">
-              <Image src="/images/visa.svg" alt="Visa" width={40} height={24} />
-              <Image src="/images/mastercard.svg" alt="Mastercard" width={40} height={24} />
-              <Image src="/images/paypal.svg" alt="Paypal" width={40} height={24} />
-              <Image src="/images/apple-pay.svg" alt="Apple Pay" width={40} height={24} />
+            <p className="text-xs text-gray-400 mb-4">Payment Method</p>
+            <div className="flex items-center gap-6 overflow-x-auto no-scrollbar">
+              <div className="relative w-12 h-8">
+                <Image src="/images/visa.svg" alt="Visa" fill className="object-contain" />
+              </div>
+              <div className="relative w-12 h-8">
+                <Image src="/images/mastercard.svg" alt="Mastercard" fill className="object-contain" />
+              </div>
+              <div className="relative w-12 h-8">
+                <Image src="/images/paypal.svg" alt="Paypal" fill className="object-contain" />
+              </div>
+              <div className="relative w-12 h-8">
+                <Image src="/images/apple-pay.svg" alt="Apple Pay" fill className="object-contain" />
+              </div>
             </div>
           </div>
 
           <div>
-            <p className="text-xs text-gray-400">Add Voucher</p>
+            <button className="w-full bg-[#FAFAFA] py-4 rounded-2xl text-[10px] text-gray-500 font-medium">
+              Add Voucher
+            </button>
           </div>
 
           <div className="text-xs text-red-400 leading-relaxed">
