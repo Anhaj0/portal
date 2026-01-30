@@ -4,3 +4,13 @@
   --color-primary: #F37A20;
   --font-sans: var(--font-dm-sans);
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+@layer utilities {
+  .btn-active {
+    @apply active:scale-95 transition-transform;
+  }
+}
