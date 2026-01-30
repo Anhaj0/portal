@@ -25,7 +25,7 @@ export default function ProductCard({ product, variant = 'tall' }: ProductCardPr
             className="object-cover"
           />
         </div>
-        <div className="absolute bottom-0 right-0 flex items-center justify-center w-9 h-9 bg-black rounded-full shadow-md z-10 p-2 border-4 border-white translate-x-[-30%] translate-y-[35%]">
+        <div className="absolute bottom-0 right-0 flex items-center justify-center w-9 h-9 bg-black rounded-full z-10 p-2 border-4 border-white translate-x-[-35%] translate-y-[55%]">
           <ShoppingBag className="w-full h-full text-white" strokeWidth={2.5} />
         </div>
       </div>

@@ -35,7 +35,10 @@ export default function BottomNav() {
   ];
 
   return (
-    <nav className="fixed bottom-0 inset-x-0 mx-auto w-full max-w-md bg-white px-8 py-4 flex justify-between items-center z-50">
+    <nav className="fixed bottom-0 inset-x-0 mx-auto w-full max-w-md bg-white px-8 py-4 flex justify-between items-center z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.02)]">
+      {/* Decorative top line */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-65 h-[2px] bg-gradient-to-r from-transparent via-[#F37A20] to-transparent rounded-full opacity-80"></div>
+
       {navItems.map((item) => {
         const isActive = pathname === item.href;
         const Icon = item.icon;
@@ -45,14 +48,14 @@ export default function BottomNav() {
           <Link
             key={item.name}
             href={item.href}
-            className="flex flex-col items-center justify-center relative group gap-1"
+            className="flex flex-col items-center justify-center relative group gap-1.5"
           >
             <div className="relative p-1">
               <Icon
-                className={`w-6 h-6 transition-colors duration-200
+                className={`w-6 h-6 transition-all duration-300
                   ${isActive
-                    ? 'text-[#F37A20] fill-[#F37A20]' // Active: Orange & Filled
-                    : 'text-black stroke-[1.5px]'     // Inactive: Black Line
+                    ? 'text-[#F37A20] stroke-[2.5px]' // Active: Orange Outline (Thicker)
+                    : 'text-black stroke-[1.5px]'     // Inactive: Black Line (Thinner)
                   }
                 `}
               />
