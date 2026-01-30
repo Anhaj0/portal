@@ -63,10 +63,20 @@ export default function Home() {
         </div>
 
         {/* Product Grid */}
-        <div className="grid grid-cols-2 gap-x-4 gap-y-8">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+        {/* Two-Column Masonry Grid */}
+        <div className="flex gap-4 items-start">
+          {/* Left Column */}
+          <div className="flex-1 flex flex-col gap-6">
+            {products.filter((_, i) => i % 2 === 0).map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+          {/* Right Column */}
+          <div className="flex-1 flex flex-col gap-6">
+            {products.filter((_, i) => i % 2 !== 0).map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
         </div>
       </main>
     </div>
